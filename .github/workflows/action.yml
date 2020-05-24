@@ -1,0 +1,22 @@
+jobs:
+    job1:
+      name: Matrix job
+      runs-on: ${{ matrix.os }}
+      strategy:
+        matrix:
+          os: [ubuntu-16.04, ubuntu-18.04]
+          node: [6, 8, 10]
+      steps:
+        - name: Check matrix
+          shell: bash
+          run: |
+            if [[ $MATRIX_CONTEXT != null ]]; then
+              echo "View the matrix context:"
+              echo "$MATRIX_CONTEXT"
+              echo "========================================"
+              echo "matrix.os = ${{ matrix.os }}"
+            else
+              echo "This is not a matrix job."
+            fi
+          env:
+            MATRIX_CONTEXT: ${{ toJson(matrix) }}
