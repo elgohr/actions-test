@@ -10,6 +10,6 @@ jobs:
         - name: Check matrix
           shell: bash
           run: |
-            echo $'{\n    "experimental": true\n}' > /etc/docker/daemon.json
+            echo $'{\n    "experimental": true\n}' | sudo tee -a /etc/docker/daemon.json
             sudo service docker restart
             docker version -f '{{.Server.Experimental}
