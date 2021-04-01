@@ -2,13 +2,9 @@ on: [push]
 jobs:
     job1:
       name: Matrix job
-      runs-on: ${{ matrix.os }}
-      strategy:
-        matrix:
-          os: [ubuntu-16.04, ubuntu-18.04]
+      runs-on: ubuntu-latest
       steps:
         - name: Check matrix
-          shell: bash
           run: |
             echo $'{"experimental": true}' | sudo tee -a /etc/docker/daemon.json
             sudo service docker restart
