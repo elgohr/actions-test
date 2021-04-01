@@ -8,6 +8,6 @@ jobs:
           docker version -f '{{.Server.Experimental}}'
       - name: Docker
         run: |
-          echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
+          echo $'{"experimental": true}' | sudo tee /etc/docker/daemon.json
           sudo service docker restart
           docker version -f '{{.Server.Experimental}}'
