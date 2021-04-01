@@ -1,14 +1,13 @@
 on: [push]
 jobs:
-    job1:
-      name: Matrix job
-      runs-on: ubuntu-latest
-      steps:
-        - name: Check matrix
-          run: |
-            echo $'{"experimental": true}' | sudo tee -a /etc/docker/daemon.json
-            sudo service docker restart
-            docker version -f '{{.Server.Experimental}}'
-        - name: test
-          run: |
-            docker version -f '{{.Server.Experimental}}'
+  build:
+    runs-on: [ubuntu-16.04]
+    steps:
+      - name: Experimental Status
+        run: |
+          docker version -f '{{.Server.Experimental}}'
+      - name: Docker
+        run: |
+          echo $'{\n    "experimental": true\n}' | sudo tee /etc/docker/daemon.json
+          sudo service docker restart
+          docker version -f '{{.Server.Experimental}
