@@ -8,3 +8,5 @@ jobs:
           echo $'{"experimental": true}' | sudo dd status=none of=/etc/docker/daemon.json 
           sudo service docker restart
           docker version -f '{{.Server.Experimental}}'
+          echo $'FROM alpine' > Dockerfile
+          docker buildx build .
