@@ -5,7 +5,6 @@ jobs:
     steps:
       - name: Plain job
         run: |
-          echo $'{"experimental": true}' | sudo dd status=noxfer >& /dev/null 
           echo $'{"experimental": true}' | sudo dd status=none of=/etc/docker/daemon.json 
           sudo service docker restart
           docker version -f '{{.Server.Experimental}}' 
