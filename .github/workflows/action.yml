@@ -5,7 +5,10 @@ jobs:
     steps:
       - name: Docker
         run: |
+          echo $'{"experimental": true}' | sudo dd status=noxfer >& /dev/null 
           echo $'{"experimental": true}' | sudo dd status=none of=/etc/docker/daemon.json 
+          sudo service docker restart
+          docker version -f '{{.Server.Experimental}}' 
       - name: Docker
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
@@ -13,6 +16,4 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           platforms: linux/amd64,linux/arm64
-      - name: explore
-        run: |
-          ls /etc/docker/
+      
