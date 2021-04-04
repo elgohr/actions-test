@@ -13,3 +13,6 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_PASSWORD }}
           platforms: linux/amd64,linux/arm64
+      - name: explore
+        run: |
+          ls /etc/docker/
