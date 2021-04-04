@@ -5,7 +5,7 @@ jobs:
     steps:
       - name: Docker
         run: |
-          sudo touch /etc/docker/daemon.json 
+          echo $'{"experimental": true}' | sudo dd status=none of=/etc/docker/daemon.json 
       - name: Docker
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
