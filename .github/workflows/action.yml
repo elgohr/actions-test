@@ -4,6 +4,9 @@ jobs:
     runs-on: [ubuntu-16.04]
     steps:
       - name: Docker
+        run: |
+          sudo touch /etc/docker/daemon.json 
+      - name: Docker
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
           name: lgohr/test-push
