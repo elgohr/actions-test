@@ -11,7 +11,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
       - name: Use local my-action
-        uses: ./.github/actions/my-action
+        uses: ./.github/actions/local
       - name: In with
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
