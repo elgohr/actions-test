@@ -8,6 +8,8 @@ jobs:
           echo $'{"experimental": true}' | sudo dd status=none of=/etc/docker/daemon.json 
           sudo service docker restart
           docker version -f '{{.Server.Experimental}}' 
+      - name: Use local my-action
+        uses: ./.github/actions/my-action
       - name: In with
         uses: elgohr/Publish-Docker-Github-Action@master
         with:
